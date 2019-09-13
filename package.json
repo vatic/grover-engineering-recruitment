@@ -9,6 +9,7 @@
     "ci": "jest --watch",
     "test": "jest --coverage",
     "lint": "eslint services",
+    "lint:fix": "eslint services --fix",
     "dc:up": "docker-compose up --build -d",
     "dc:down": "docker-compose down"
   },
@@ -18,7 +19,7 @@
   ],
   "author": "",
   "devDependencies": {
-    "eslint": "^6.1.0",
+    "eslint": "^6.3.0",
     "jest": "^24.8.0",
     "jest-cli": "^24.8.0",
     "moleculer-repl": "^0.5.7"

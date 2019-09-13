@@ -7,7 +7,7 @@ module.exports = {
 	name: 'products',
 
 	mixins: [DbService],
-	adapter: new SqlAdapter("postgres://vatagin:vat123@localhost:5432/grover_dev"),
+	adapter: new SqlAdapter('postgres://vatagin:vat123@localhost:5432/grover_dev'),
 	model: {
 		name: "products",
 		define: {
@@ -17,15 +17,22 @@ module.exports = {
 			availability: Sequelize.BOOLEAN,
 			quantity: Sequelize.INTEGER,
 		},
-		options: {
-			// Options from http://docs.sequelizejs.com/manual/tutorial/models-definition.html
-		}
 	},
 	actions: {
-		async list() {
-			const result = await this.adapter.db.query("SELECT * FROM products");
-			return result[0];
+		async list(ctx) {
+			if(!Object.keys(ctx.params).includes('available') || ctx.params.available) {
+				return (await this.availableProducts())[0];
+			}
+			return (await this.unavailableProducts())[0];
 		}
 	},
+	methods: {
+		availableProducts() {
+			return this.adapter.db.query("SELECT * FROM products WHERE availability = true");
+		},
+		unavailableProducts() {
+			return this.adapter.db.query("SELECT * FROM products WHERE availability = false");
+		},
+	}
 }
 
