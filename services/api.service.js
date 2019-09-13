@@ -15,7 +15,10 @@ module.exports = {
 			whitelist: [
 				// Access to any actions in all services under "/api" URL
 				"**"
-			]
+			],
+			aliases: {
+				"GET products": "products.list",
+			}
 		}],
 
 		// Serve assets from "public" folder
