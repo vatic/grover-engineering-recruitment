@@ -1,4 +1,10 @@
 BEGIN;
+    DROP TABLE IF EXISTS "categories" CASCADE;
+    DROP TABLE IF EXISTS "brands" CASCADE;
+    DROP TABLE IF EXISTS "stores" CASCADE;
+    DROP TABLE IF EXISTS "products" CASCADE;
+    DROP TABLE IF EXISTS "inventory_items" CASCADE;
+    DROP MATERIALIZED VIEW IF EXISTS "inventory";
 
     CREATE TABLE IF NOT EXISTS "categories" (
         "id" INTEGER PRIMARY KEY,
@@ -32,7 +38,7 @@ BEGIN;
         "updated_at" TIMESTAMP WITH TIME ZONE NOT NULL
     );
 
-    CREATE MATERIALIZED VIEW IF NOT EXISTS inventory
+    CREATE MATERIALIZED VIEW IF NOT EXISTS "inventory"
     AS
     SELECT
         s.title as store,
