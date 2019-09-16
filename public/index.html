@@ -6,34 +6,59 @@
         <title>Test Vatagin</title>
     </head>
     <body>
-        <h1>Services</h1>
-        <ul>
-            <li><a href="/api/products/" target="_blank"><code>/api/products</code></a></li>
-        </ul>
-        <section>
+        <section class="products">
+            <h1 class="text-center">Products:</h1>
             <div id="products">
-                <input type="checkbox" id="products-availability-checkbox" checked/>
-                <label for="products-availability-checkbox">Avalable now</label>
-
-                <select name="select" id="products-store-select">
-                    <option value="grover-de" selected>grover-de</option>
-                    <option value="mm-berlin">mm-berlin</option>
-                </select>
-
-                <table id="products-table">
-                    <tbody id="products-table-body">
+                <table class="products-table">
+                    <thead class="products-table-head">
                         <tr>
-                            <th>Store</th>
+                            <th>
+                                <select name="select" id="products-store-select">
+                                    <option value="grover-de" selected>grover-de</option>
+                                    <option value="mm-berlin">mm-berlin</option>
+                                </select>
+                                <label for="products-availability-select">Store</label>
+                            </th>
                             <th>Category</th>
                             <th>Brand</th>
                             <th>Name</th>
-                            <th>Availability</th>
+                            <th>
+                                <input type="checkbox" id="products-availability-checkbox" checked/>
+                                <label for="products-availability-checkbox">Avalable now</label>
+                            </th>
                             <th>Quantity</th>
-                            <th>Created</th>
-                            <th>Updated</th>
                         </tr>
+                    </thead>
+                    <tbody id="products-table-body">
                     </tbody>
                 </table>
+            </div>
+        </section>
+        <section class="services">
+            <h1 class="text-center">Services:</h1>
+            <div class="services-wrapper">
+                <ul>
+                    <li>
+                        <a href="/api/products/" target="_blank">
+                            <code>/api/products &mdash; Avalable products in grover-de</code>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/api/products?unavailable" target="_blank">
+                            <code>/api/products?unavailable &mdash; Unavalable products in grover-de</code>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/api/products?store=mm-berlin" target="_blank">
+                            <code>/api/products?store=mm-berlin &mdash; Avalable products in mm-berlin</code>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/api/products?unavailable&&store=mm-berlin" target="_blank">
+                            <code>/api/products?unavailable&&store=mm-berlin &mdash; Unavalable products in mm-berlin</code>
+                        </a>
+                    </li>
+                </ul>
             </div>
         </section>
         <script src="main.js"></script>

@@ -1,19 +1,20 @@
 (function({ filter, baseUrl, checkboxId, selectId, tableBodyId }) {
 
-	const availabilityCheckbox = document.getElementById(checkboxId);
-	const storeSelect = document.getElementById(selectId);
-	const productsTableBody = document.getElementById(tableBodyId);
-	const tableHeader = productsTableBody.innerHTML;
+		const availabilityCheckbox = document.getElementById(checkboxId);
+		const storeSelect = document.getElementById(selectId);
+		const productsTableBody = document.getElementById(tableBodyId);
+
+		availabilityCheckbox.addEventListener('change', function() {
+			changeFilter({ availability: this.checked })
+		});
+
+		storeSelect.addEventListener('change', function() {
+			changeFilter({ store: this.value });
+		});
+
 
 	fetchData(baseUrl, renderProductsTable);
 
-	availabilityCheckbox.addEventListener('click', function() {
-		changeFilter({ availability: this.checked })
-	});
-
-	storeSelect.addEventListener('change', function() {
-		changeFilter({ store: this.value });
-	});
 
 	function changeFilter({ availability, store }) {
 
@@ -29,7 +30,7 @@
 	}
 
 	function buildUrl({ availability, store }) {
-		return `${baseUrl}?store=${filter.store}${filter.availability ? '':'&&unavailable'}`;
+		return `${baseUrl}?store=${store}${availability ? '':'&&unavailable'}`;
 	}
 
 	async function fetchData(url, renderFn) {
@@ -44,7 +45,7 @@
 	}
 
 	function renderProductsTable(products) {
-		productsTableBody.innerHTML = tableHeader;
+		productsTableBody.innerHTML = '';
 
 		products.forEach(p => {
 			const tr = document.createElement('tr');

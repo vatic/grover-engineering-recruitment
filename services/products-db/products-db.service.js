@@ -23,7 +23,7 @@ module.exports = {
 		filteredProducts(ctx) {
 			const { availability, store } = ctx.params;
 			return this.adapter.db.query(
-				'SELECT store, category, brand, name, availability, quantity, created_at, updated_at FROM inventory WHERE availability = :availability AND store = :store',
+				'SELECT store, category, brand, name, availability, quantity FROM inventory WHERE availability = :availability AND store = :store',
 				{ replacements: { availability, store } }
 			);
 		}
