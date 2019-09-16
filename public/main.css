@@ -60,7 +60,8 @@ label {
     text-align: center;
 }
 
-.products-table {
+.products {
+    height: 50vh;
 }
 
 .services {
