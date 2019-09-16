@@ -4,10 +4,21 @@ module.exports = {
 	actions: {
 		async list(ctx) {
 			console.dir(ctx.params);
-			if(Object.keys(ctx.params).includes('unavailable') || Boolean(ctx.params.unavailable)) {
-				return (await ctx.call('products-db.unavailableProducts'))[0];
+			return (await ctx.call('products-db.filteredProducts', this.filter(ctx.params)))[0];
+		}
+	},
+
+	methods: {
+		filter(params) {
+			let availability = true;
+			let store = 'grover-de';
+			if(Object.keys(params).includes('unavailable')) {
+				availability = false;
 			}
-			return (await ctx.call('products-db.availableProducts'))[0];
+			if(Object.keys(params).includes('store')) {
+				store =  params.store;
+			}
+			return { availability, store };
 		}
 	}
 }

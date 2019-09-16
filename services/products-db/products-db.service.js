@@ -20,16 +20,17 @@ module.exports = {
 	},
 
 	actions: {
-		availableProducts() {
-			return this.adapter.db.query('SELECT store, category, brand, name, availability, quantity, created_at, updated_at FROM inventory WHERE availability = true');
-		},
-		unavailableProducts() {
-			return this.adapter.db.query('SELECT store, category, brand, name, availability, quantity, created_at, updated_at FROM inventory WHERE availability = false');
+		filteredProducts(ctx) {
+			const { availability, store } = ctx.params;
+			return this.adapter.db.query(
+				'SELECT store, category, brand, name, availability, quantity, created_at, updated_at FROM inventory WHERE availability = :availability AND store = :store',
+			{ replacements: { availability, store } }
+			);
 		}
 	},
 
 	async afterConnected() {
-		this.logger.info('Connected successfully');
+		this.logger.info('Database connected successfully...');
 
 		const dbSchema = fs.readFileSync(path.join(__dirname, 'db', 'sql', 'schema.sql'), 'utf8');
 		const dbSeeds = fs.readFileSync(path.join(__dirname, 'db', 'sql', 'seeds.sql'), 'utf8');
