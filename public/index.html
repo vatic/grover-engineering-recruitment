@@ -2,12 +2,35 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
+        <link rel="stylesheet" href="main.css">
         <title>Test Vatagin</title>
     </head>
     <body>
         <h1>Services</h1>
         <ul>
-            <li><a href="/api/products/"><code>/api/products</code></a></li>
+            <li><a href="/api/products/" target="_blank"><code>/api/products</code></a></li>
         </ul>
+        <section>
+            <div id="products">
+                <input type="checkbox" id="products-availability-checkbox" />
+                <label for="products-availability-checkbox">Avalable now</label>
+
+                <table id="products-table">
+                    <tbody id="products-table-body">
+                        <tr>
+                            <th>Store</th>
+                            <th>Category</th>
+                            <th>Brand</th>
+                            <th>Name</th>
+                            <th>Availability</th>
+                            <th>Quantity</th>
+                            <th>Created</th>
+                            <th>Updated</th>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+        <script src="main.js"></script>
     </body>
 </html>

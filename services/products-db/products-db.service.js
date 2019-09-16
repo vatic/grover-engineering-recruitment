@@ -21,10 +21,10 @@ module.exports = {
 
 	actions: {
 		availableProducts() {
-			return this.adapter.db.query('SELECT * FROM inventory WHERE availability = true');
+			return this.adapter.db.query('SELECT store, category, brand, name, availability, quantity, created_at, updated_at FROM inventory WHERE availability = true');
 		},
 		unavailableProducts() {
-			return this.adapter.db.query('SELECT * FROM inventory WHERE availability = false');
+			return this.adapter.db.query('SELECT store, category, brand, name, availability, quantity, created_at, updated_at FROM inventory WHERE availability = false');
 		}
 	},
 
