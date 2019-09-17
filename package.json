@@ -7,7 +7,7 @@
     "start": "moleculer-runner",
     "cli": "moleculer connect NATS",
     "ci": "jest --watch",
-    "test": "jest --coverage",
+    "test": "cross-env NODE_ENV=development mocha \"./{,!(node_modules)/**/}*.test.js\" --exit",
     "lint": "eslint services",
     "lint:fix": "eslint services --fix",
     "dc:up": "docker-compose up --build -d",
@@ -19,10 +19,20 @@
   ],
   "author": "",
   "devDependencies": {
+    "chai": "^4.2.0",
+    "chai-as-promised": "^7.1.1",
+    "cross-env": "^5.2.1",
     "eslint": "^6.3.0",
+    "istanbul": "^0.4.5",
     "jest": "^24.8.0",
     "jest-cli": "^24.8.0",
-    "moleculer-repl": "^0.5.7"
+    "mocha": "^6.2.0",
+    "moleculer-repl": "^0.5.7",
+    "nyc": "^14.1.1",
+    "rewire": "^4.0.1",
+    "sinon": "^7.4.2",
+    "sinon-chai": "^3.3.0",
+    "supertest": "^4.0.2"
   },
   "dependencies": {
     "moleculer": "^0.13.9",
