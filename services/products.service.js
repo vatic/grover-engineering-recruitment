@@ -3,7 +3,6 @@ module.exports = {
 
 	actions: {
 		async list(ctx) {
-			console.dir(ctx.params);
 			return (await ctx.call('products-db.filteredProducts', this.filter(ctx.params)))[0];
 		}
 	},
