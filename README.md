@@ -2,6 +2,8 @@
 
 ### For running in one command you need Docker installed on your target host
 
+#### After `npm run dc:up` visit [http://localhost:3000](http://localhost:3000)
+
 ## NPM scripts
 
 - `npm run dev`: Start development mode (load all services locally with hot-reload & REPL)
