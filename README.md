@@ -16,3 +16,6 @@
 - `npm run dc:down`: Stop the stack with Docker Compose
 
 #### For development without docker you need postresql (11 preffered) installed.
+
+##### I use [Moleculer](https://moleculer.services/) in this project.
+##### It's amazing framework.
