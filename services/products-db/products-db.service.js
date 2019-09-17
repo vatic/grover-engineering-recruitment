@@ -4,11 +4,13 @@ const DbService = require('moleculer-db');
 const SqlAdapter = require('moleculer-db-adapter-sequelize');
 const Sequelize = require('sequelize');
 
+const dbHost = process.env.NODE_ENV === 'production'? 'db':'localhost';
+
 module.exports = {
 	name: 'products-db',
 
 	mixins: [DbService],
-	adapter: new SqlAdapter('postgres://vatagin:vat123@localhost:5432/grover_dev'),
+	adapter: new SqlAdapter(`postgres://postgres:postgres@${dbHost}:5432/grover_dev`),
 	model: {
 		name: 'flags',
 		timestamps: false,

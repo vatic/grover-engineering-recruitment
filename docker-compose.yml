@@ -22,14 +22,14 @@ services:
     networks:
       - internal
 
-  greeter:
+  products:
     build:
       context: .
     image: grover-engineering-recruitment
-    container_name: grover-engineering-recruitment-greeter
+    container_name: grover-engineering-recruitment-products
     env_file: docker-compose.env
     environment:
-      SERVICES: greeter
+      SERVICES: products
     labels:
       - "traefik.enable=false"
     depends_on:
@@ -37,8 +37,38 @@ services:
     networks:
       - internal
 
+  products-db:
+    build:
+      context: .
+    image: grover-engineering-recruitment
+    container_name: grover-engineering-recruitment-products-db
+    env_file: docker-compose.env
+    environment:
+      SERVICES: products-db
+    labels:
+      - "traefik.enable=false"
+    links:
+      - nats
+      - pg
+    depends_on:
+      - nats
+      - pg
+    networks:
+      - internal
+
   nats:
     image: nats
+    labels:
+      - "traefik.enable=false"
+    networks:
+      - internal
+
+  pg:
+    image: postgres
+    container_name: db
+    env_file: docker-compose.env
+    ports:
+      - "5432:5432"
     labels:
       - "traefik.enable=false"
     networks:
