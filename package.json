@@ -12,7 +12,8 @@
     "lint": "eslint services",
     "lint:fix": "eslint services --fix",
     "dc:up": "docker-compose up --build -d",
-    "dc:down": "docker-compose down"
+    "dc:down": "docker-compose down",
+    "build": "npm run dc:up"
   },
   "keywords": [
     "microservices",
