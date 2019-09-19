@@ -75,7 +75,7 @@ services:
       - internal
 
   traefik:
-    image: traefik
+    image: traefik:1.7.16-alpine
     container_name: traefik
     command:
       - "--api"
